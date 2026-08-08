@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import timedelta
 from decouple import config, Csv
-
+import cloudinary
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-production')
@@ -106,7 +106,16 @@ mediaflows_b7a3b74c-af8c'),
     'API_KEY': config('414332257522591'),
     'API_SECRET': config('GjL9DMhQv1w73pGoNB_sdg7B-e0'),
 }
+}
 
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
