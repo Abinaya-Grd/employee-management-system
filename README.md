@@ -38,20 +38,41 @@ project/
 
 Requires Docker + Docker Compose.
 
+### 1. Configure backend environment
+
+Copy the example environment file.
+
+On Windows PowerShell:
+
+```powershell
+Copy-Item backend/.env.example backend/.env
+```
+
+On macOS/Linux:
+
 ```bash
-cd project
+cp backend/.env.example backend/.env
+```
+
+### 2. Start the application
+
+Run from the repository root:
+
+```bash
 docker compose up --build
 ```
 
 This will:
-1. Start MySQL 8 and wait until it's healthy
+
+1. Start MySQL 8 and wait until it is healthy
 2. Run Django migrations, collect static files, and seed demo data
 3. Start the Django backend (gunicorn) on **http://localhost:8000**
-4. Build and serve the React app (nginx) on **http://localhost:5173**
+4. Build and serve the React app on **http://localhost:5174**
 
 **Default login:** `admin` / `Admin@123`
 
 API root: `http://localhost:8000/api/`
+
 Django admin: `http://localhost:8000/admin/`
 
 ## Local Development (without Docker)
